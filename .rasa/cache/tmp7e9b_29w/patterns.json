@@ -1,0 +1,34 @@
+[
+  {
+    "name": "jenjang",
+    "pattern": "Doktor"
+  },
+  {
+    "name": "jenjang",
+    "pattern": "Magister"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Magister Sain Manajemen"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Manajemen Teknologi"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Statistika"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Teknik Informatika"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Teknik Kimia"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Teknik Sipil"
+  }
+]

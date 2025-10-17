@@ -32,42 +32,7 @@ rules:
   # ========== TANYA PRODI ==========
   # Complex prodi queries handled by stories
 
-  # ========== TANYA DARI QNA (JAWABAN STATIS) ==========
-  - rule: jawab pertanyaan QnA umum
-    steps:
-      - intent: tanya_jalur_pendaftaran
-      - action: action_answer_from_qna
-
-  - rule: jawab syarat pendaftaran
-    steps:
-      - intent: tanya_syarat_pendaftaran
-      - action: action_answer_from_qna
-
-  - rule: jawab cara pendaftaran
-    steps:
-      - intent: cara_mendaftar
-      - action: action_answer_from_qna
-
-  - rule: jawab beasiswa
-    steps:
-      - intent: tanya_beasiswa
-      - action: action_answer_from_qna
-
-  - rule: jawab jadwal pendaftaran
-    steps:
-      - intent: tanya_jadwal_pendaftaran
-      - action: action_answer_from_qna
-
-  - rule: jawab jadwal ujian
-    steps:
-      - intent: tanya_jadwal_ujian
-      - action: action_answer_from_qna
-
-  - rule: jawab jadwal pengumuman
-    steps:
-      - intent: tanya_jadwal_pengumuman
-      - action: action_answer_from_qna
-
+  # ========== SIMPLE RULES FOR DIRECT QNA MAPPING ==========
   - rule: jawab masa studi
     steps:
       - intent: tanya_masa_studi
@@ -86,6 +51,41 @@ rules:
   - rule: jawab asrama
     steps:
       - intent: tanya_asrama
+      - action: action_answer_from_qna
+
+  - rule: jawab biaya pendaftaran
+    steps:
+      - intent: tanya_biaya_pendaftaran
+      - action: action_answer_from_qna
+
+  - rule: jawab cara pembayaran
+    steps:
+      - intent: cara_pembayaran
+      - action: action_answer_from_qna
+
+  - rule: jawab double degree
+    steps:
+      - intent: tanya_double_degree
+      - action: action_answer_from_qna
+
+  - rule: jawab ipk minimum
+    steps:
+      - intent: tanya_ipk_minimum
+      - action: action_answer_from_qna
+
+  - rule: jawab periode pendaftaran
+    steps:
+      - intent: tanya_periode_pendaftaran
+      - action: action_answer_from_qna
+
+  - rule: jawab seleksi
+    steps:
+      - intent: tanya_seleksi
+      - action: action_answer_from_qna
+
+  - rule: jawab transfer
+    steps:
+      - intent: tanya_transfer
       - action: action_answer_from_qna
 
   # ========== ROUTE AFTER CLARIFY ==========

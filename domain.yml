@@ -89,6 +89,9 @@ responses:
     - text: Mohon jelaskan lebih spesifik agar saya bisa membantu dengan tepat. Apa yang ingin Anda ketahui?
   utter_default:
     - text: Maaf, saya belum paham. Bisa diulangi dengan kata lain?
+  utter_default_fallback:
+    - text: Maaf, saya belum memahami pertanyaan Anda. Silakan coba tanyakan dengan cara lain atau pilih dari topik berikut yang bisa saya bantu
+    - text: Saya kurang mengerti maksud Anda. Bisa dijelaskan lebih detail?
 
   # ====== Prompt penggalian slot ======
   utter_ask_jenjang:
@@ -108,3 +111,4 @@ actions:
   - action_list_prodi_by_fakultas
   - action_lookup_fakultas_by_prodi
   - action_route_after_clarify
+  - action_default_fallback

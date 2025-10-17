@@ -12,15 +12,18 @@ Indonesian language chatbot for ITS (Institut Teknologi Sepuluh Nopember) postgr
 ## Quick Start
 
 ### Prerequisites
+
 - Python 3.11+
 - Virtual environment activated
 
 ### Installation
+
 ```bash
 pip install rasa
 ```
 
 ### Training
+
 ```bash
 rasa train
 ```
@@ -28,6 +31,7 @@ rasa train
 ### Running the Chatbot
 
 #### Option 1: Use Helper Scripts
+
 ```powershell
 # Start Inspector (port 5006)
 .\rinspect.ps1
@@ -37,11 +41,12 @@ rasa train
 ```
 
 #### Option 2: Manual Commands
+
 ```bash
 # Start Inspector
 rasa inspect --port 5006
 
-# Start Action Server  
+# Start Action Server
 rasa run actions --port 5055
 
 # Interactive Shell
@@ -51,11 +56,13 @@ rasa shell
 ## Configuration
 
 ### Fixed Ports
+
 - **Rasa Inspector**: Port 5006
 - **Action Server**: Port 5055
 - **Core Server**: Port 5005
 
 ### Pipeline
+
 - WhitespaceTokenizer
 - RegexFeaturizer
 - KeywordIntentClassifier
@@ -91,16 +98,19 @@ demo_chatbot/
 ## Development
 
 ### Training New Models
+
 ```bash
 rasa train
 ```
 
 ### Testing
+
 ```bash
 rasa test
 ```
 
 ### Interactive Learning
+
 ```bash
 rasa interactive
 ```
@@ -108,6 +118,7 @@ rasa interactive
 ## Deployment
 
 The chatbot is configured with fixed ports for consistent deployment:
+
 - Use the provided helper scripts for easy startup
 - All configurations are documented in `config.yml`
 

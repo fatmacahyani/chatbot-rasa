@@ -46,15 +46,18 @@ nlu:
   - intent: tanya_prodi_tersedia
     examples: |
       - Apa saja program studi yang tersedia di Pascasarjana ITS?
-      - apa saja prodi di di kalutas electics?
+      - apa saja prodi di fakultas [ELECTICS](fakultas)?
       - apa saja prodi
       - prodi apa saja
       - program studi tersedia
       - program studi apa saja
       - jurusan apa saja
       - Daftar prodi Pascasarjana ITS apa saja?
-      - Saya ingin tahu prodi Magister dan Doktor yang ada di ITS
+      - Saya ingin tahu prodi [Magister](jenjang) dan [Doktor](jenjang) yang ada di ITS
       - Program apa yang ditawarkan Pascasarjana ITS?
+      - prodi di fakultas [Teknologi Elektro dan Informatika Cerdas](fakultas)
+      - jurusan [Magister](jenjang) apa saja?
+      - program [Doktor](jenjang) yang ada
 
   - intent: tanya_periode_pendaftaran
     examples: |
@@ -100,6 +103,13 @@ nlu:
       - Berapa biaya per semester Pascasarjana ITS?
       - Saya ingin tahu UKT program S2 ITS
       - Berapa biaya [Magister](jenjang) [Jalur Reguler dan Riset](program)?
+      - biaya [Magister](jenjang) [Teknik Sipil](prodi)
+      - UKT [Doktor](jenjang) [Statistika](prodi) berapa?
+      - harga kuliah [Magister](jenjang)
+      - berapa bayar kuliah S2?
+      - biaya S3 berapa?
+      - UKT pascasarjana
+      - biaya kuliah pascasarjana ITS
 
   - intent: tanya_beasiswa
     examples: |
@@ -194,8 +204,64 @@ nlu:
       - Statistika
       - Teknik Kimia
       - Magister Sain Manajemen
+      - Teknik Fisika
+      - Teknik Elektro
+      - Sistem Informasi
+      - Arsitektur
+      - Teknik Mesin
 
   - regex: jenjang
     examples: |
       - Magister
       - Doktor
+      - S2
+      - S3
+
+  - regex: fakultas
+    examples: |
+      - ELECTICS
+      - Teknologi Elektro dan Informatika Cerdas
+      - Teknologi Industri dan Rekayasa Sistem
+      - Teknologi Kelautan
+      - Sains dan Analitika Data
+
+  - regex: program
+    examples: |
+      - Jalur Reguler dan Riset
+      - PJJ Reguler
+      - DMT
+      - Kerjasama
+      - Beasiswa
+
+  - synonym: "Magister"
+    examples: |
+      - S2
+      - magister
+      - master
+
+  - synonym: "Doktor"
+    examples: |
+      - S3
+      - doktor
+      - doktoral
+      - PhD
+
+  - lookup: prodi
+    examples: |
+      - Teknik Informatika
+      - Manajemen Teknologi
+      - Teknik Sipil
+      - Statistika
+      - Teknik Kimia
+      - Teknik Fisika
+      - Teknik Elektro
+      - Sistem Informasi
+      - Arsitektur
+      - Teknik Mesin
+
+  - lookup: jenjang
+    examples: |
+      - Magister
+      - Doktor
+      - S2
+      - S3

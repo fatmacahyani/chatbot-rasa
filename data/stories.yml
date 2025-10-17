@@ -43,11 +43,6 @@ stories:
       - intent: tanya_toefl
       - action: action_answer_from_qna
 
-  - story: masa studi (statis)
-    steps:
-      - intent: tanya_masa_studi
-      - action: action_answer_from_qna
-
   - story: jadwal pendaftaran (statis)
     steps:
       - intent: tanya_jadwal_pendaftaran

@@ -24,16 +24,19 @@ assistant_id: pascasarjana_its_chatbot
 language: "id"
 
 pipeline:
-  # --- Basic tokenization ---
   - name: WhitespaceTokenizer
   - name: RegexFeaturizer
-
-  # --- Intent & Entity Recognition ---
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
   - name: KeywordIntentClassifier
-
-  # --- Fallback handling ---
+  - name: EntitySynonymMapper
+  - name: RegexEntityExtractor
   - name: FallbackClassifier
-    threshold: 0.7
+    threshold: 0.3
     ambiguity_threshold: 0.1
 
 # =====================================
@@ -42,3 +45,6 @@ pipeline:
 policies:
   - name: MemoizationPolicy
   - name: RulePolicy
+    core_fallback_threshold: 0.3
+    core_fallback_action_name: "action_default_fallback"
+    enable_fallback_prediction: true

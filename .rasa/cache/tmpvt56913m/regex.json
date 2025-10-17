@@ -1,0 +1,110 @@
+[
+  {
+    "name": "fakultas",
+    "pattern": "ELECTICS"
+  },
+  {
+    "name": "fakultas",
+    "pattern": "Sains dan Analitika Data"
+  },
+  {
+    "name": "fakultas",
+    "pattern": "Teknologi Elektro dan Informatika Cerdas"
+  },
+  {
+    "name": "fakultas",
+    "pattern": "Teknologi Industri dan Rekayasa Sistem"
+  },
+  {
+    "name": "fakultas",
+    "pattern": "Teknologi Kelautan"
+  },
+  {
+    "name": "jenjang",
+    "pattern": "Doktor"
+  },
+  {
+    "name": "jenjang",
+    "pattern": "Magister"
+  },
+  {
+    "name": "jenjang",
+    "pattern": "S2"
+  },
+  {
+    "name": "jenjang",
+    "pattern": "S3"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Arsitektur"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Magister Sain Manajemen"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Manajemen Teknologi"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Sistem Informasi"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Statistika"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Teknik Elektro"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Teknik Fisika"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Teknik Informatika"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Teknik Kimia"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Teknik Mesin"
+  },
+  {
+    "name": "prodi",
+    "pattern": "Teknik Sipil"
+  },
+  {
+    "name": "program",
+    "pattern": "Beasiswa"
+  },
+  {
+    "name": "program",
+    "pattern": "DMT"
+  },
+  {
+    "name": "program",
+    "pattern": "Jalur Reguler dan Riset"
+  },
+  {
+    "name": "program",
+    "pattern": "Kerjasama"
+  },
+  {
+    "name": "program",
+    "pattern": "PJJ Reguler"
+  },
+  {
+    "name": "prodi",
+    "pattern": "(\\bTeknik\\ Informatika\\b|\\bManajemen\\ Teknologi\\b|\\bTeknik\\ Sipil\\b|\\bStatistika\\b|\\bTeknik\\ Kimia\\b|\\bTeknik\\ Fisika\\b|\\bTeknik\\ Elektro\\b|\\bSistem\\ Informasi\\b|\\bArsitektur\\b|\\bTeknik\\ Mesin\\b)"
+  },
+  {
+    "name": "jenjang",
+    "pattern": "(\\bMagister\\b|\\bDoktor\\b|\\bS2\\b|\\bS3\\b)"
+  }
+]
