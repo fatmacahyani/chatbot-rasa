@@ -1,7 +1,7 @@
 version: "3.1"
 
 session_config:
-  session_expiration_time: 60 # menit
+  session_expiration_time: 60
   carry_over_slots_to_new_session: true
 
 intents:
@@ -10,35 +10,39 @@ intents:
   - thank_you
   - inform
   - nlu_fallback
-
-  # QnA statis (jawaban dari t_qna)
-  - tanya_jalur_pendaftaran
   - tanya_prodi_tersedia
+  - tanya_biaya_kuliah
+  # QnA intents (sesuai dengan t_qna)
+  - tanya_jalur_pendaftaran
   - tanya_periode_pendaftaran
   - tanya_syarat_pendaftaran
   - cara_mendaftar
   - tanya_biaya_pendaftaran
   - tanya_beasiswa
-  - tanya_biaya_kuliah
   - cara_pembayaran
-  - tanya_seleksi
-  - tanya_ipk_minimum
-  - tanya_toefl
-  - tanya_masa_studi
-  - tanya_double_degree
-  - tanya_cuti
-  - tanya_transfer
-  - tanya_asrama
-  - tanya_kegiatan_mahasiswa
-  - tanya_jadwal_pendaftaran
-  - tanya_jadwal_ujian
-  - tanya_jadwal_pengumuman
+  - tanya_prosedur_seleksi
+  - dokumen_diunggah
+  - batas_usia
+  - daftar_multi_prodi
+  - ipk_minimal
+  - ijazah_belum_terbit
+  - tahapan_seleksi
+  - toefl
+  - format_surat_rekomendasi
+  - pendaftar_asing
+  - konsistensi_proposal
+  - lokal_hasil_seleksi
+  - orientasi_wajib
+  - kendala_pembayaran
+  - batas_upload
+  - ubah_data_setelah_submit
+  - kuliah_online_blended
 
 entities:
-  - jenjang # Magister / Doktor
-  - prodi # nama program studi (TI, TF, MT, dll.)
-  - program # varian program biaya (Jalur Reguler dan Riset, PJJ Reguler, DMT, dst.)
-  - fakultas # nama fakultas
+  - jenjang
+  - fakultas
+  - program
+  - prodi
 
 slots:
   jenjang:
@@ -47,68 +51,42 @@ slots:
     mappings:
       - type: from_entity
         entity: jenjang
-  prodi:
-    type: text
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: prodi
-  program:
-    type: text
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: program
   fakultas:
     type: text
     influence_conversation: true
     mappings:
       - type: from_entity
         entity: fakultas
+  program:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: program
+  prodi:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: prodi
 
 responses:
-  # ====== Greeting & Help & Goodbye ======
   utter_greet:
     - text: >
-        Halo! Saya asisten pendaftaran Pascasarjana ITS 👋.
-        Saya bisa bantu cari informasi biaya, jadwal, syarat, prodi, dan lainnya.
-  utter_help_topics:
-    - text: >
-        Contoh yang bisa Anda tanyakan:
-        • "Berapa biaya Magister Manajemen Teknologi?"
-        • "Apa saja prodi di Fakultas ELECTICS?"
-        • "Bagaimana cara mendaftar?"
-        • "Kapan jadwal ujian masuk?"
-  utter_goodbye:
-    - text: Terima kasih. Semoga membantu! 👋
-  utter_you_are_welcome:
-    - text: Sama-sama! Ada yang bisa saya bantu lagi?
+        Halo! 👋 Saya asisten virtual Pascasarjana ITS.
+        Saya bisa membantu Anda mencari informasi tentang pascasarjana ITS.
+        Silakan tanyakan apa yang ingin Anda ketahui!
 
-  # ====== Klarifikasi / Fallback ======
   utter_ask_clarify:
-    - text: Mohon jelaskan lebih spesifik agar saya bisa membantu dengan tepat. Apa yang ingin Anda ketahui?
-  utter_default:
-    - text: Maaf, saya belum paham. Bisa diulangi dengan kata lain?
-  utter_default_fallback:
-    - text: Maaf, saya belum memahami pertanyaan Anda. Silakan coba tanyakan dengan cara lain atau pilih dari topik berikut yang bisa saya bantu
-    - text: Saya kurang mengerti maksud Anda. Bisa dijelaskan lebih detail?
+    - text: "Mohon jelaskan lebih spesifik apa yang ingin Anda ketahui tentang Pascasarjana ITS. Saya siap membantu! 😊"
 
-  # ====== Prompt penggalian slot ======
-  utter_ask_jenjang:
-    - text: Untuk jenjang apa? Magister atau Doktor?
-  utter_ask_prodi_or_program:
-    - text: 'Untuk program apa? Contoh: "Jalur Reguler dan Riset", "PJJ Reguler", "DMT", dsb.'
-  utter_ask_fakultas_optional:
-    - text: Dari fakultas tertentu kah? Jika ya, sebutkan nama fakultasnya.
+  utter_goodbye:
+    - text: "Terima kasih sudah menggunakan layanan informasi Pascasarjana ITS! Semoga bermanfaat. 👋"
 
-  # ====== Placeholder hasil biaya (opsional; bisa dipakai bila action hanya set text) ======
-  utter_show_biaya_result:
-    - text: Berikut informasi biayanya.
+  utter_you_are_welcome:
+    - text: "Sama-sama! Ada lagi yang bisa saya bantu? 😊"
 
 actions:
-  - action_answer_from_qna
+  - action_query_prodi
   - action_query_biaya
-  - action_list_prodi_by_fakultas
-  - action_lookup_fakultas_by_prodi
-  - action_route_after_clarify
-  - action_default_fallback
+  - action_answer_from_qna

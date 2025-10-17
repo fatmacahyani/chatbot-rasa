@@ -1,50 +1,25 @@
-version: "3.1"
+recipe: default.v1
 
-# =====================================
-# SERVER CONFIGURATION NOTES
-# =====================================
-# Default ports (set via environment variables):
-# - Rasa server (inspect): 5006 (RASA_SERVER_PORT)
-# - Action server: 5055 (ACTION_SERVER_PORT)
-# - Core server (shell/API): 5005
-#
-# With environment variables set, you can use:
-# rasa inspect (will use port 5006)
-# rasa run actions (will use port 5055)
-# rasa shell (will use port 5005)
-
-# =====================================
-# ASSISTANT CONFIGURATION
-# =====================================
-assistant_id: pascasarjana_its_chatbot
-
-# =====================================
-# NLU CONFIGURATION
-# =====================================
 language: "id"
 
+# =====================================
+# NLU Pipeline (External Service)
+# =====================================
 pipeline:
-  - name: WhitespaceTokenizer
-  - name: RegexFeaturizer
-  - name: LexicalSyntacticFeaturizer
-  - name: CountVectorsFeaturizer
-  - name: CountVectorsFeaturizer
-    analyzer: char_wb
-    min_ngram: 1
-    max_ngram: 4
-  - name: KeywordIntentClassifier
-  - name: EntitySynonymMapper
-  - name: RegexEntityExtractor
-  - name: FallbackClassifier
-    threshold: 0.3
-    ambiguity_threshold: 0.1
+  - name: NLUCommandAdapter
+    url: "http://localhost:3000"
 
 # =====================================
 # CORE POLICIES
 # =====================================
 policies:
   - name: MemoizationPolicy
+  - name: TEDPolicy
+    max_history: 10
+    epochs: 200
   - name: RulePolicy
     core_fallback_threshold: 0.3
     core_fallback_action_name: "action_default_fallback"
     enable_fallback_prediction: true
+
+assistant_id: pascasarjana_its_chatbot
