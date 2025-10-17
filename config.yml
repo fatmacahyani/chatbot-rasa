@@ -1,0 +1,44 @@
+version: "3.1"
+
+# =====================================
+# SERVER CONFIGURATION NOTES
+# =====================================
+# Default ports (set via environment variables):
+# - Rasa server (inspect): 5006 (RASA_SERVER_PORT)
+# - Action server: 5055 (ACTION_SERVER_PORT)
+# - Core server (shell/API): 5005
+#
+# With environment variables set, you can use:
+# rasa inspect (will use port 5006)
+# rasa run actions (will use port 5055)
+# rasa shell (will use port 5005)
+
+# =====================================
+# ASSISTANT CONFIGURATION
+# =====================================
+assistant_id: pascasarjana_its_chatbot
+
+# =====================================
+# NLU CONFIGURATION
+# =====================================
+language: "id"
+
+pipeline:
+  # --- Basic tokenization ---
+  - name: WhitespaceTokenizer
+  - name: RegexFeaturizer
+
+  # --- Intent & Entity Recognition ---
+  - name: KeywordIntentClassifier
+
+  # --- Fallback handling ---
+  - name: FallbackClassifier
+    threshold: 0.7
+    ambiguity_threshold: 0.1
+
+# =====================================
+# CORE POLICIES
+# =====================================
+policies:
+  - name: MemoizationPolicy
+  - name: RulePolicy

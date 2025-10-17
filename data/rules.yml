@@ -1,0 +1,94 @@
+version: "3.1"
+
+rules:
+  # ========== GREETING ==========
+  - rule: greet the user
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_help_topics
+
+  # ========== GOODBYE ==========
+  - rule: say goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # ========== THANK YOU ==========
+  - rule: respond to thanks
+    steps:
+      - intent: thank_you
+      - action: utter_you_are_welcome
+
+  # ========== FALLBACK / KALIMAT TIDAK DIPAHAMI ==========
+  - rule: handle fallback when NLU confidence is low
+    steps:
+      - intent: nlu_fallback
+      - action: utter_ask_clarify
+
+  # ========== TANYA BIAYA (DARI DATABASE) ==========
+  # Removed conflicting slot-based rules - handled by stories instead
+
+  # ========== TANYA PRODI ==========
+  # Complex prodi queries handled by stories
+
+  # ========== TANYA DARI QNA (JAWABAN STATIS) ==========
+  - rule: jawab pertanyaan QnA umum
+    steps:
+      - intent: tanya_jalur_pendaftaran
+      - action: action_answer_from_qna
+
+  - rule: jawab syarat pendaftaran
+    steps:
+      - intent: tanya_syarat_pendaftaran
+      - action: action_answer_from_qna
+
+  - rule: jawab cara pendaftaran
+    steps:
+      - intent: cara_mendaftar
+      - action: action_answer_from_qna
+
+  - rule: jawab beasiswa
+    steps:
+      - intent: tanya_beasiswa
+      - action: action_answer_from_qna
+
+  - rule: jawab jadwal pendaftaran
+    steps:
+      - intent: tanya_jadwal_pendaftaran
+      - action: action_answer_from_qna
+
+  - rule: jawab jadwal ujian
+    steps:
+      - intent: tanya_jadwal_ujian
+      - action: action_answer_from_qna
+
+  - rule: jawab jadwal pengumuman
+    steps:
+      - intent: tanya_jadwal_pengumuman
+      - action: action_answer_from_qna
+
+  - rule: jawab masa studi
+    steps:
+      - intent: tanya_masa_studi
+      - action: action_answer_from_qna
+
+  - rule: jawab cuti
+    steps:
+      - intent: tanya_cuti
+      - action: action_answer_from_qna
+
+  - rule: jawab kegiatan mahasiswa
+    steps:
+      - intent: tanya_kegiatan_mahasiswa
+      - action: action_answer_from_qna
+
+  - rule: jawab asrama
+    steps:
+      - intent: tanya_asrama
+      - action: action_answer_from_qna
+
+  # ========== ROUTE AFTER CLARIFY ==========
+  - rule: route after clarify
+    steps:
+      - action: action_route_after_clarify
