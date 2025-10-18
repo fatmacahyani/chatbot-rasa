@@ -1,20 +1,22 @@
 recipe: default.v1
-language: "id"
+
+language: "en"
 
 # -------------------------
-# NLU Pipeline - External Service
+# NLU Pipeline
 # -------------------------
 pipeline:
-  - name: NLUCommandAdapter
+  - name: NLUCommandAdapter # adapter ditambahkan di sini
     url: "http://localhost:3000"
 
 # -------------------------
-# Dialogue Policies - Simple (No TEDPolicy)
+# Dialogue Policies
 # -------------------------
 policies:
   - name: MemoizationPolicy
+  - name: TEDPolicy
+    max_history: 10
+    epochs: 200
   - name: RulePolicy
-    core_fallback_threshold: 0.3
-    core_fallback_action_name: "action_default_fallback"
 
-assistant_id: pascasarjana-its-chatbot
+assistant_id: 20250924-045037-leather-model

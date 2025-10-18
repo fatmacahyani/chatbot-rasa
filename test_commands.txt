@@ -1,0 +1,29 @@
+
+# Simple Rasa Test Commands
+# Use these in your Rasa Inspector or shell
+
+# Test greetings
+/greet
+halo
+hi
+
+# Test prodi queries (should call external service)
+apa saja prodi pascasarjana
+prodi apa saja
+program studi tersedia
+
+# Test biaya queries (should call external service)  
+berapa biaya kuliah
+biaya per semester
+ongkos kuliah
+
+# Test static QnA responses
+apa syarat pendaftaran
+ada beasiswa tidak
+kapan jadwal pendaftaran 2025
+bagaimana cara mendaftar
+
+# Test thanks and goodbye
+terima kasih
+sampai jumpa
+bye
