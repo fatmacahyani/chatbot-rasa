@@ -1,133 +1,84 @@
 version: "3.1"
+
 stories:
-  # =============== GREETING & GOODBYE ===============
-  - story: greet -> offer help
+  # =============== BASIC FLOWS ===============
+  - story: basic greeting
     steps:
       - intent: greet
       - action: utter_greet
-      - action: utter_help_topics # jelaskan bot bisa bantu biaya, prodi, jadwal, syarat, dsb.
 
-  - story: user says thanks
+  - story: user wants to ask something
     steps:
-      - intent: thank_you
-      - action: utter_you_are_welcome
+      - intent: inform
+      - action: utter_ask_clarify
 
-  - story: goodbye
+  - story: say goodbye
     steps:
       - intent: goodbye
       - action: utter_goodbye
 
-  # =============== QNA STATIS (AMBIL DARI t_qna) ===============
-  - story: jalur pendaftaran (statis)
+  - story: thank you
+    steps:
+      - intent: thank_you
+      - action: utter_you_are_welcome
+
+  # =============== MAIN FEATURE FLOWS ===============
+  - story: ask about programs
+    steps:
+      - intent: tanya_prodi_tersedia
+      - action: action_query_prodi
+
+  - story: ask about tuition fees
+    steps:
+      - intent: tanya_biaya_kuliah
+      - action: action_query_biaya
+
+  # =============== QNA CONVERSATION FLOWS ===============
+  - story: ask about admission paths
     steps:
       - intent: tanya_jalur_pendaftaran
-      - action: action_answer_from_qna # ambil jawaban di t_qna berdasarkan intent
+      - action: action_answer_qna_static # FIXED: Ganti dari action_answer_qna
 
-  - story: cara mendaftar (statis)
-    steps:
-      - intent: cara_mendaftar
-      - action: action_answer_from_qna
-
-  - story: syarat pendaftaran (statis)
+  - story: ask about admission requirements
     steps:
       - intent: tanya_syarat_pendaftaran
-      - action: action_answer_from_qna
+      - action: action_answer_qna_static # FIXED
 
-  - story: beasiswa (statis)
+  - story: ask how to register
+    steps:
+      - intent: cara_mendaftar
+      - action: action_answer_qna_static # FIXED
+
+  - story: ask about scholarships
     steps:
       - intent: tanya_beasiswa
-      - action: action_answer_from_qna
+      - action: action_answer_qna_static # FIXED
 
-  - story: toefl (statis)
+  # =============== COMPLEX CONVERSATION FLOWS ===============
+  - story: greet then ask about programs
     steps:
-      - intent: tanya_toefl
-      - action: action_answer_from_qna
-
-  - story: jadwal pendaftaran (statis)
-    steps:
-      - intent: tanya_jadwal_pendaftaran
-      - action: action_answer_from_qna
-
-  - story: jadwal ujian (statis)
-    steps:
-      - intent: tanya_jadwal_ujian
-      - action: action_answer_from_qna
-
-  - story: jadwal pengumuman (statis)
-    steps:
-      - intent: tanya_jadwal_pengumuman
-      - action: action_answer_from_qna
-
-  # =============== QUERY DINAMIS: BIAYA (t_biaya_pascasarjana) ===============
-  - story: biaya kuliah lengkap (jenjang + prodi/varian tersedia)
-    steps:
-      - intent: tanya_biaya_kuliah
-        entities:
-          - jenjang: "Magister"
-          - prodi: "Manajemen Teknologi"
-      - slot_was_set:
-          - jenjang: "Magister"
-          - prodi: "Manajemen Teknologi"
-      - action: action_query_biaya # SELECT biaya_label, spi, ipits FROM t_biaya_pascasarjana WHERE ...
-      - action: utter_show_biaya_result
-
-  - story: biaya kuliah – tanya balik jenjang dulu
-    steps:
-      - intent: tanya_biaya_kuliah
-        entities:
-          - prodi: "Teknik Informatika"
-      - slot_was_set:
-          - prodi: "Teknik Informatika"
-      - action: utter_ask_jenjang # “Untuk jenjang apa? Magister atau Doktor?”
-      - intent: inform
-        entities:
-          - jenjang: "Magister"
-      - slot_was_set:
-          - jenjang: "Magister"
-      - action: action_query_biaya
-      - action: utter_show_biaya_result
-
-  - story: biaya kuliah – tanya balik prodi/varian program
-    steps:
-      - intent: tanya_biaya_kuliah
-        entities:
-          - jenjang: "Doktor"
-      - slot_was_set:
-          - jenjang: "Doktor"
-      - action: utter_ask_prodi_or_program # “Untuk program apa? (contoh: Jalur Reguler dan Riset / PJJ Reguler / DMT)”
-      - intent: inform
-        entities:
-          - prodi: "PJJ Reguler"
-      - slot_was_set:
-          - prodi: "PJJ Reguler"
-      - action: action_query_biaya
-      - action: utter_show_biaya_result
-
-  # =============== QUERY DINAMIS: PRODI (t_prodi) ===============
-  - story: daftar prodi pada fakultas tertentu
-    steps:
+      - intent: greet
+      - action: utter_greet
       - intent: tanya_prodi_tersedia
-      - action: utter_ask_fakultas_optional # kalau user belum menyebut fakultas, minta fakultas (opsional)
-      - intent: inform
-        entities:
-          - fakultas: "Teknologi Elektro dan Informatika Cerdas"
-      - slot_was_set:
-          - fakultas: "Teknologi Elektro dan Informatika Cerdas"
-      - action: action_list_prodi_by_fakultas # SELECT prodi FROM t_prodi WHERE fakultas=...
+      - action: action_query_prodi
+      - intent: thank_you
+      - action: utter_you_are_welcome
 
-  - story: cari fakultas dari nama prodi
+  - story: multiple questions flow
     steps:
+      - intent: greet
+      - action: utter_greet
       - intent: tanya_prodi_tersedia
-        entities:
-          - prodi: "Teknik Fisika"
-      - slot_was_set:
-          - prodi: "Teknik Fisika"
-      - action: action_lookup_fakultas_by_prodi # SELECT fakultas FROM t_prodi WHERE prodi=...
+      - action: action_query_prodi
+      - intent: tanya_biaya_kuliah
+      - action: action_query_biaya
+      - intent: tanya_beasiswa
+      - action: action_answer_qna_static # FIXED
+      - intent: goodbye
+      - action: utter_goodbye
 
-  # =============== FALLBACK & CLARIFICATION ===============
-  - story: fallback then clarify
+  # =============== FALLBACK HANDLING ===============
+  - story: fallback response
     steps:
       - intent: nlu_fallback
-      - action: utter_ask_clarify
-      - intent: inform
-      - action: action_route_after_clarify # arahkan ke action yang sesuai (qna atau db)
+      - action: action_default_fallback

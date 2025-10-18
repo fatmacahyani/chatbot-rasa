@@ -1,24 +1,31 @@
 version: "3.1"
+
 nlu:
   # ========== BASIC INTENTS ==========
   - intent: greet
     examples: |
       - hai
       - halo
+      - hi
+      - hello
       - selamat pagi
       - selamat siang
       - selamat sore
-      - hi
-      - hello
       - assalamualaikum
+      - hei
+      - morning
 
   - intent: goodbye
     examples: |
-      - sampai jumpa
       - bye
+      - sampai jumpa
       - selamat tinggal
       - wassalamualaikum
       - ok terima kasih
+      - sudah cukup
+      - selesai
+      - ok bye
+      - sampai ketemu lagi
 
   - intent: thank_you
     examples: |
@@ -26,242 +33,407 @@ nlu:
       - thanks
       - makasih
       - terimakasih banyak
+      - thank you
+      - terima kasih ya
+      - makasih banyak
+      - terimakasih atas bantuannya
 
   - intent: inform
     examples: |
       - saya mau tanya
-      - mau tanya
       - boleh tanya
       - mau info
+      - saya ingin bertanya
+      - mau tanya dong
       - butuh informasi
+      - bisa bantu
+      - tolong bantu
+      - ada yang mau ditanyakan
 
-  # ========== INFORMASI PENDAFTARAN ==========
-  - intent: tanya_jalur_pendaftaran
-    examples: |
-      - Apa saja jalur pendaftaran program Pascasarjana di ITS?
-      - Jalur apa saja yang tersedia untuk Pascasarjana ITS?
-      - Apa tipe jalur masuk S2 ITS?
-      - Jalur pendaftaran S3 di ITS apa saja?
-
+  # ========== MAIN FEATURE INTENTS ==========
   - intent: tanya_prodi_tersedia
     examples: |
-      - Apa saja program studi yang tersedia di Pascasarjana ITS?
-      - apa saja prodi di fakultas [ELECTICS](fakultas)?
-      - apa saja prodi
+      - apa saja prodi pascasarjana
       - prodi apa saja
       - program studi tersedia
-      - program studi apa saja
-      - jurusan apa saja
-      - Daftar prodi Pascasarjana ITS apa saja?
-      - Saya ingin tahu prodi [Magister](jenjang) dan [Doktor](jenjang) yang ada di ITS
-      - Program apa yang ditawarkan Pascasarjana ITS?
-      - prodi di fakultas [Teknologi Elektro dan Informatika Cerdas](fakultas)
-      - jurusan [Magister](jenjang) apa saja?
-      - program [Doktor](jenjang) yang ada
-
-  - intent: tanya_periode_pendaftaran
-    examples: |
-      - Kapan periode pendaftaran Pascasarjana ITS?
-      - Kapan pendaftaran S2 ITS dibuka?
-      - Jadwal pendaftaran S3 ITS kapan?
-      - Kapan gelombang pendaftaran Pascasarjana dimulai?
-
-  - intent: tanya_syarat_pendaftaran
-    examples: |
-      - Apa syarat umum pendaftaran Pascasarjana ITS?
-      - apa syarat daftar pascasarjana ITS?
-      - syarat daftar pascasarjana
-      - syarat pendaftaran
-      - syarat masuk
-      - persyaratan
-      - Dokumen apa saja yang dibutuhkan saat mendaftar?
-      - Syarat masuk S2 ITS apa?
-      - syarat daftar
-      - syarat masuk pascasarjana
-      - Persyaratan pendaftaran program doktor ITS apa?
-
-  - intent: cara_mendaftar
-    examples: |
-      - Bagaimana cara mendaftar Pascasarjana ITS?
-      - Langkah-langkah pendaftaran S2 ITS bagaimana?
-      - Dimana saya bisa mendaftar Pascasarjana ITS?
-      - Link pendaftaran Pascasarjana ITS?
-
-  # ========== BIAYA DAN PEMBAYARAN ==========
-  - intent: tanya_biaya_pendaftaran
-    examples: |
-      - Apakah ada biaya pendaftaran Pascasarjana ITS?
-      - Berapa biaya pendaftaran S2 ITS?
-      - Biaya pendaftaran program doktor ITS berapa?
-      - Haruskah bayar biaya pendaftaran Pascasarjana?
+      - apa saja program studi yang tersedia di Pascasarjana ITS
+      - prodi pascasarjana ITS
+      - daftar prodi pascasarjana
+      - jurusan apa saja di pascasarjana
+      - program apa yang ditawarkan
+      - prodi apa saja di fakultas elektro
+      - program studi di pascasarjana ITS
+      - ada prodi apa saja
+      - jurusan pascasarjana ITS
 
   - intent: tanya_biaya_kuliah
     examples: |
-      - Berapa biaya kuliah [Magister](jenjang) [Manajemen Teknologi](prodi)?
-      - Berapa UKT [Doktor](jenjang) [PJJ Reguler](program)?
-      - Tolong tampilkan biaya kuliah [Magister](jenjang) [Teknik Informatika](prodi)
-      - Berapa biaya per semester Pascasarjana ITS?
-      - Saya ingin tahu UKT program S2 ITS
-      - Berapa biaya [Magister](jenjang) [Jalur Reguler dan Riset](program)?
-      - biaya [Magister](jenjang) [Teknik Sipil](prodi)
-      - UKT [Doktor](jenjang) [Statistika](prodi) berapa?
-      - harga kuliah [Magister](jenjang)
-      - berapa bayar kuliah S2?
-      - biaya S3 berapa?
-      - UKT pascasarjana
-      - biaya kuliah pascasarjana ITS
+      - berapa biaya kuliah
+      - biaya per semester
+      - spp berapa
+      - biaya kuliah pascasarjana
+      - ongkos kuliah
+      - uang kuliah
+      - tarif kuliah
+      - berapa biaya magister
+      - biaya S2
+      - berapa biaya doktor
+      - biaya S3
+      - berapa SPP pascasarjana
+
+  # ========== QNA INTENTS - JALUR DAN PENDAFTARAN ==========
+  - intent: tanya_jalur_pendaftaran
+    examples: |
+      - apa saja jalur pendaftaran program Pascasarjana di ITS
+      - jalur pendaftaran pascasarjana
+      - tipe pendaftaran apa saja
+      - cara masuk pascasarjana
+      - jalur masuk pascasarjana ITS
+      - ada jalur apa saja untuk daftar
+      - jenis pendaftaran pascasarjana
+
+  - intent: tanya_periode_pendaftaran
+    examples: |
+      - kapan periode pendaftaran Pascasarjana ITS
+      - periode pendaftaran pascasarjana
+      - jadwal pendaftaran
+      - waktu pendaftaran
+      - kapan buka pendaftaran
+      - periode daftar pascasarjana
+      - jadwal daftar
+
+  - intent: tanya_syarat_pendaftaran
+    examples: |
+      - apa syarat umum pendaftaran Pascasarjana ITS
+      - syarat pendaftaran pascasarjana
+      - persyaratan daftar
+      - syarat masuk pascasarjana
+      - apa saja syaratnya
+      - dokumen apa yang dibutuhkan
+      - persyaratan umum
+
+  - intent: cara_mendaftar
+    examples: |
+      - bagaimana cara mendaftar Pascasarjana ITS
+      - cara daftar pascasarjana
+      - langkah pendaftaran
+      - prosedur daftar
+      - gimana cara daftar
+      - bagaimana daftar pascasarjana ITS
+      - cara mendaftar pascasarjana
+
+  # ========== BIAYA DAN KEUANGAN ==========
+  - intent: tanya_biaya_pendaftaran
+    examples: |
+      - apakah ada biaya pendaftaran program Pascasarjana
+      - biaya pendaftaran
+      - ongkos daftar
+      - bayar pendaftaran berapa
+      - biaya daftar pascasarjana
+      - ada biaya daftar tidak
+      - berapa biaya pendaftaran
 
   - intent: tanya_beasiswa
     examples: |
-      - Apakah ada beasiswa untuk Pascasarjana ITS?
-      - Beasiswa apa yang tersedia untuk mahasiswa S2?
-      - Ada beasiswa LPDP di ITS?
-      - Apakah ada beasiswa kerjasama Pascasarjana?
+      - apakah ada beasiswa untuk Pascasarjana ITS
+      - beasiswa pascasarjana
+      - bantuan biaya kuliah
+      - ada beasiswa tidak
+      - beasiswa untuk S2
+      - beasiswa doktor
+      - bantuan keuangan
+      - beasiswa kuliah
 
-  - intent: cara_pembayaran
+  - intent: cara_pembayaran_pendaftaran
     examples: |
-      - Bagaimana cara pembayaran biaya pendaftaran?
-      - Pembayaran dilakukan lewat apa?
-      - Bisa bayar lewat bank mana?
-      - Sistem pembayaran pendaftaran S2 ITS bagaimana?
+      - bagaimana cara pembayaran biaya pendaftaran
+      - cara bayar pendaftaran
+      - metode pembayaran
+      - gimana bayar biaya daftar
+      - pembayaran pendaftaran
+      - cara bayar biaya daftar
 
-  # ========== PROSES SELEKSI ==========
-  - intent: tanya_seleksi
+  # ========== SELEKSI DAN TES ==========
+  - intent: tanya_prosedur_seleksi
     examples: |
-      - Bagaimana prosedur seleksi masuk Pascasarjana ITS?
-      - Apa saja tahap seleksi Pascasarjana?
-      - Seleksi Pascasarjana ITS terdiri dari apa saja?
-      - Tes masuk Pascasarjana ITS seperti apa?
+      - bagaimana prosedur seleksi masuk Pascasarjana ITS
+      - prosedur seleksi
+      - tahapan seleksi
+      - proses seleksi pascasarjana
+      - seleksi masuk pascasarjana
+      - tes masuk pascasarjana
 
-  - intent: tanya_ipk_minimum
+  - intent: tahapan_seleksi
     examples: |
-      - Berapa IPK minimal untuk mendaftar Pascasarjana ITS?
-      - IPK saya 2,7 apakah bisa daftar S2?
-      - Minimal IPK untuk S3 ITS berapa?
+      - apa saja tahapan seleksi Pascasarjana
+      - tahapan seleksi pascasarjana
+      - langkah seleksi
+      - proses tes masuk
+      - tahap tes pascasarjana
 
-  - intent: tanya_toefl
+  - intent: toefl
     examples: |
-      - Apakah ada tes TOEFL untuk pendaftaran Pascasarjana ITS?
-      - Skor TOEFL minimal berapa untuk Magister ITS?
-      - Apakah wajib sertifikat bahasa Inggris?
+      - apakah ada tes TOEFL/kemampuan bahasa Inggris
+      - tes TOEFL
+      - syarat TOEFL
+      - bahasa Inggris
+      - kemampuan bahasa Inggris
+      - skor TOEFL minimal
+      - IELTS pascasarjana
 
-  # ========== AKADEMIK DAN ADMINISTRASI ==========
-  - intent: tanya_masa_studi
+  # ========== DOKUMEN DAN ADMINISTRASI ==========
+  - intent: dokumen_diunggah
     examples: |
-      - Berapa lama masa studi program Magister ITS?
-      - Berapa lama kuliah S2 di ITS?
-      - Lama studi Doktor ITS berapa tahun?
+      - apa saja dokumen yang perlu diunggah saat pendaftaran
+      - dokumen pendaftaran
+      - upload dokumen apa saja
+      - berkas yang dibutuhkan
+      - dokumen yang harus diunggah
+      - file apa yang diupload
 
-  - intent: tanya_double_degree
+  - intent: batas_usia
     examples: |
-      - Apakah ada program double degree di Pascasarjana ITS?
-      - Bisa kuliah double degree di ITS?
+      - apakah ada batas usia untuk mendaftar Pascasarjana
+      - batas usia pendaftaran
+      - usia maksimal daftar
+      - ada batasan umur tidak
+      - usia untuk daftar pascasarjana
 
-  - intent: tanya_cuti
+  - intent: daftar_multi_prodi
     examples: |
-      - Apakah mahasiswa S2 bisa cuti?
-      - Ada batas cuti untuk Pascasarjana ITS?
-      - Berapa lama maksimal cuti kuliah?
+      - apakah bisa mendaftar lebih dari satu program studi
+      - daftar beberapa prodi
+      - multi program
+      - daftar lebih dari satu jurusan
+      - boleh pilih beberapa prodi
 
-  - intent: tanya_transfer
+  - intent: ipk_minimum
     examples: |
-      - Apakah Pascasarjana ITS menerima mahasiswa transfer?
-      - Bisa pindahan ke ITS untuk program Magister?
+      - bagaimana ketentuan nilai IPK minimal untuk mendaftar
+      - IPK minimal
+      - syarat IPK
+      - nilai minimal pascasarjana
+      - berapa IPK minimum
+      - syarat nilai akademik
 
-  - intent: tanya_asrama
+  - intent: ijazah_belum_terbit
     examples: |
-      - Apakah ada asrama untuk mahasiswa Pascasarjana?
-      - Mahasiswa Pascasarjana bisa tinggal di asrama ITS?
+      - bagaimana jika ijazah belum terbit saat pendaftaran
+      - ijazah belum ada
+      - surat keterangan lulus
+      - belum wisuda
+      - ijazah belum keluar
+      - surat keterangan dari perguruan tinggi
 
-  - intent: tanya_kegiatan_mahasiswa
+  - intent: format_surat_rekomendasi
     examples: |
-      - Apakah mahasiswa Pascasarjana bisa ikut kegiatan kampus?
-      - Ada organisasi mahasiswa Pascasarjana ITS?
+      - bagaimana format surat rekomendasi
+      - format surat rekomendasi
+      - surat rekomendasi
+      - contoh surat rekomendasi
+      - template surat rekomendasi
 
-  # ========== JADWAL ==========
-  - intent: tanya_jadwal_pendaftaran
+  # ========== MAHASISWA KHUSUS ==========
+  - intent: pendaftar_asing
     examples: |
-      - Kapan jadwal pendaftaran mahasiswa baru Pascasarjana ITS Semester Genap 2025/2026?
-      - Kapan dibuka pendaftaran semester genap S2 ITS?
-      - Jadwal pendaftaran S3 ITS semester depan kapan?
+      - apakah calon mahasiswa asing bisa mendaftar
+      - mahasiswa asing
+      - warga negara asing
+      - foreign student
+      - pendaftar dari luar negeri
+      - calon mahasiswa luar negeri
 
-  - intent: tanya_jadwal_ujian
+  - intent: konsistensi_proposal
     examples: |
-      - Kapan ujian masuk Pascasarjana ITS?
-      - Jadwal tes seleksi S2 ITS kapan?
+      - apakah penelitian tesis/disertasi harus sesuai proposal saat mendaftar
+      - proposal penelitian
+      - konsistensi proposal
+      - penelitian sesuai proposal
+      - topik penelitian
+      - proposal tesis
 
-  - intent: tanya_jadwal_pengumuman
+  # ========== HASIL DAN ORIENTASI ==========
+  - intent: lokasi_hasil_seleksi
     examples: |
-      - Kapan pengumuman hasil ujian Pascasarjana ITS?
-      - Kapan hasil seleksi Pascasarjana diumumkan?
+      - di mana saya dapat melihat hasil seleksi
+      - hasil seleksi
+      - pengumuman hasil
+      - cek hasil seleksi
+      - dimana lihat hasil
+      - hasil tes pascasarjana
 
-  # ========== ENTITY EXTRACTION ==========
-  - regex: prodi
+  - intent: orientasi_wajib
     examples: |
-      - Teknik Informatika
-      - Manajemen Teknologi
-      - Teknik Sipil
-      - Statistika
-      - Teknik Kimia
-      - Magister Sain Manajemen
-      - Teknik Fisika
-      - Teknik Elektro
-      - Sistem Informasi
-      - Arsitektur
-      - Teknik Mesin
+      - apakah mahasiswa baru Pascasarjana ITS wajib mengikuti orientasi
+      - orientasi mahasiswa baru
+      - wajib orientasi
+      - program orientasi
+      - orientasi pascasarjana
 
-  - regex: jenjang
+  # ========== KENDALA DAN UPDATE DATA ==========
+  - intent: kendala_pembayaran
     examples: |
-      - Magister
-      - Doktor
-      - S2
-      - S3
+      - bagaimana jika terjadi kendala pembayaran
+      - masalah pembayaran
+      - kendala bayar
+      - gangguan pembayaran
+      - error pembayaran
+      - pembayaran bermasalah
 
-  - regex: fakultas
+  - intent: batas_upload
     examples: |
-      - ELECTICS
-      - Teknologi Elektro dan Informatika Cerdas
-      - Teknologi Industri dan Rekayasa Sistem
-      - Teknologi Kelautan
-      - Sains dan Analitika Data
+      - apakah ada batas waktu upload dokumen pendaftaran
+      - deadline upload
+      - batas waktu upload
+      - kapan batas upload dokumen
+      - deadline dokumen
 
-  - regex: program
+  - intent: ubah_data_setelah_submit
     examples: |
-      - Jalur Reguler dan Riset
-      - PJJ Reguler
-      - DMT
-      - Kerjasama
-      - Beasiswa
+      - apakah bisa mengubah data pendaftaran setelah submit
+      - ubah data pendaftaran
+      - edit data setelah submit
+      - koreksi data
+      - revisi pendaftaran
+      - perbaiki data
 
-  - synonym: "Magister"
+  # ========== PROGRAM KHUSUS ==========
+  - intent: kuliah_online_blended
     examples: |
-      - S2
-      - magister
-      - master
+      - apakah ada program kuliah online atau blended
+      - kuliah online
+      - program blended
+      - sistem online
+      - kuliah daring
+      - pembelajaran online
 
-  - synonym: "Doktor"
+  - intent: transfer_mahasiswa
     examples: |
-      - S3
-      - doktor
-      - doktoral
-      - PhD
+      - apakah program Pascasarjana ITS menerima mahasiswa transfer
+      - mahasiswa transfer
+      - pindah program studi
+      - transfer mahasiswa
+      - pindahan dari kampus lain
 
-  - lookup: prodi
+  - intent: double_degree
     examples: |
-      - Teknik Informatika
-      - Manajemen Teknologi
-      - Teknik Sipil
-      - Statistika
-      - Teknik Kimia
-      - Teknik Fisika
-      - Teknik Elektro
-      - Sistem Informasi
-      - Arsitektur
-      - Teknik Mesin
+      - apakah ada program double degree yang bekerja sama dengan universitas luar negeri
+      - program double degree
+      - double degree
+      - gelar ganda
+      - kerjasama luar negeri
 
-  - lookup: jenjang
+  - intent: masa_studi
     examples: |
-      - Magister
-      - Doktor
-      - S2
-      - S3
+      - berapa lama masa studi maksimal untuk program Magister dan Doktor di ITS
+      - masa studi
+      - durasi kuliah
+      - lama studi maksimal
+      - berapa semester
+      - waktu studi
+
+  - intent: cuti_studi
+    examples: |
+      - apakah mahasiswa Pascasarjana ITS bisa mengajukan cuti studi
+      - cuti studi
+      - istirahat kuliah
+      - berhenti sementara
+      - cuti kuliah
+
+  # ========== FASILITAS ==========
+  - intent: asrama_pascasarjana
+    examples: |
+      - apakah ada fasilitas asrama untuk mahasiswa Pascasarjana
+      - asrama pascasarjana
+      - tempat tinggal
+      - dormitory
+      - fasilitas asrama
+      - hunian mahasiswa
+
+  - intent: perpustakaan_pascasarjana
+    examples: |
+      - apakah ada fasilitas perpustakaan untuk mahasiswa Pascasarjana ITS
+      - perpustakaan pascasarjana
+      - fasilitas perpustakaan
+      - library
+      - perpustakaan ITS
+
+  # ========== INFORMASI KONTAK ==========
+  - intent: kontak_informasi
+    examples: |
+      - siapa yang dapat dihubungi untuk informasi lebih lanjut
+      - kontak informasi
+      - hubungi siapa
+      - contact person
+      - informasi kontak
+      - nomor telepon
+      - email pascasarjana
+
+  - intent: keringanan_ukt
+    examples: |
+      - apakah bisa mengajukan keringanan atau cicilan UKT
+      - keringanan UKT
+      - cicilan biaya kuliah
+      - bantuan biaya
+      - keringanan biaya
+
+  - intent: konsultasi_akademik
+    examples: |
+      - apakah ada layanan konsultasi akademik untuk mahasiswa pascasarjana
+      - konsultasi akademik
+      - layanan konsultasi
+      - bimbingan akademik
+      - konseling akademik
+
+  - intent: wisuda_pascasarjana
+    examples: |
+      - bagaimana ketentuan wisuda untuk Pascasarjana ITS
+      - wisuda pascasarjana
+      - syarat wisuda
+      - prosedur wisuda
+      - jadwal wisuda
+
+  # ========== JADWAL SPESIFIK 2025/2026 ==========
+  - intent: jadwal_pendaftaran_2025
+    examples: |
+      - kapan jadwal pendaftaran mahasiswa baru Pascasarjana ITS Semester Genap 2025
+      - jadwal pendaftaran 2025
+      - pendaftaran semester genap 2025
+      - jadwal daftar 2025
+      - kapan pendaftaran 2025
+
+  - intent: jadwal_ujian_2025
+    examples: |
+      - kapan jadwal ujian masuk Pascasarjana ITS Semester Genap 2025/2026
+      - jadwal ujian 2025
+      - tes masuk 2025
+      - ujian pascasarjana 2025
+      - jadwal tes 2025
+
+  - intent: jadwal_pengumuman_2025
+    examples: |
+      - kapan pengumuman hasil ujian masuk Pascasarjana ITS diumumkan
+      - pengumuman hasil 2025
+      - kapan hasil ujian
+      - jadwal pengumuman
+      - hasil seleksi 2025
+
+  # ========== FALLBACK ==========
+  - intent: nlu_fallback
+    examples: |
+      - xyz123
+      - asdfgh
+      - test fallback
+      - random text
+      - tidak jelas
+      - apa ini
+      - entahlah
+      - bingung
+      - ga tau
+      - help me
+      - what is this
+      - ????
+      - hmm
+      - oke
+      - ya
+      - tidak

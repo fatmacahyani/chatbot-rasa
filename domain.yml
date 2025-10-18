@@ -5,38 +5,55 @@ session_config:
   carry_over_slots_to_new_session: true
 
 intents:
+  # Basic intents
   - greet
   - goodbye
   - thank_you
   - inform
   - nlu_fallback
+
+  # Main feature intents
   - tanya_prodi_tersedia
   - tanya_biaya_kuliah
-  # QnA intents (sesuai dengan t_qna)
+
+  # QnA intents - ALL INTENTS
   - tanya_jalur_pendaftaran
   - tanya_periode_pendaftaran
   - tanya_syarat_pendaftaran
   - cara_mendaftar
   - tanya_biaya_pendaftaran
   - tanya_beasiswa
-  - cara_pembayaran
   - tanya_prosedur_seleksi
   - dokumen_diunggah
   - batas_usia
+  - cara_pembayaran_pendaftaran
   - daftar_multi_prodi
-  - ipk_minimal
+  - ipk_minimum
   - ijazah_belum_terbit
   - tahapan_seleksi
   - toefl
   - format_surat_rekomendasi
   - pendaftar_asing
   - konsistensi_proposal
-  - lokal_hasil_seleksi
+  - lokasi_hasil_seleksi
   - orientasi_wajib
   - kendala_pembayaran
   - batas_upload
   - ubah_data_setelah_submit
   - kuliah_online_blended
+  - transfer_mahasiswa
+  - double_degree
+  - masa_studi
+  - cuti_studi
+  - asrama_pascasarjana
+  - perpustakaan_pascasarjana
+  - kontak_informasi
+  - keringanan_ukt
+  - konsultasi_akademik
+  - wisuda_pascasarjana
+  - jadwal_pendaftaran_2025
+  - jadwal_ujian_2025
+  - jadwal_pengumuman_2025
 
 entities:
   - jenjang
@@ -47,46 +64,59 @@ entities:
 slots:
   jenjang:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
       - type: from_entity
         entity: jenjang
   fakultas:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
       - type: from_entity
         entity: fakultas
   program:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
       - type: from_entity
         entity: program
   prodi:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
       - type: from_entity
         entity: prodi
 
 responses:
   utter_greet:
-    - text: >
-        Halo! 👋 Saya asisten virtual Pascasarjana ITS.
-        Saya bisa membantu Anda mencari informasi tentang pascasarjana ITS.
-        Silakan tanyakan apa yang ingin Anda ketahui!
+    - text: |
+        Halo! 👋 Selamat datang di **Asisten Virtual Pascasarjana ITS**!
 
-  utter_ask_clarify:
-    - text: "Mohon jelaskan lebih spesifik apa yang ingin Anda ketahui tentang Pascasarjana ITS. Saya siap membantu! 😊"
+        Silakan tanyakan apa yang ingin Anda ketahui! Saya siap membantu. 😊
 
   utter_goodbye:
-    - text: "Terima kasih sudah menggunakan layanan informasi Pascasarjana ITS! Semoga bermanfaat. 👋"
+    - text: |
+        Terima kasih telah menggunakan layanan **Asisten Virtual Pascasarjana ITS**! 🙏
+
+        Semoga informasi yang diberikan bermanfaat untuk persiapan studi lanjut Anda.
 
   utter_you_are_welcome:
-    - text: "Sama-sama! Ada lagi yang bisa saya bantu? 😊"
+    - text: |
+        Sama-sama! Senang bisa membantu Anda. 😊
+
+        Ada pertanyaan lain tentang Pascasarjana ITS? 
+        Saya siap membantu kapan saja! 🚀
+
+  utter_ask_clarify:
+    - text: |
+        Mohon jelaskan lebih spesifik apa yang ingin Anda ketahui. 🤔
+
+  utter_default:
+    - text: |
+        Maaf, saya belum memahami pertanyaan Anda dengan baik. 😅
 
 actions:
   - action_query_prodi
   - action_query_biaya
-  - action_answer_from_qna
+  - action_answer_qna_static # FIXED: Ganti dari action_answer_qna
+  - action_default_fallback

@@ -1,94 +1,82 @@
 version: "3.1"
 
 rules:
-  # ========== GREETING ==========
-  - rule: greet the user
+  # ========== BASIC INTERACTION RULES ==========
+  - rule: respond to greetings
     steps:
       - intent: greet
       - action: utter_greet
-      - action: utter_help_topics
 
-  # ========== GOODBYE ==========
-  - rule: say goodbye
+  - rule: respond to goodbye
     steps:
       - intent: goodbye
       - action: utter_goodbye
 
-  # ========== THANK YOU ==========
   - rule: respond to thanks
     steps:
       - intent: thank_you
       - action: utter_you_are_welcome
 
-  # ========== FALLBACK / KALIMAT TIDAK DIPAHAMI ==========
-  - rule: handle fallback when NLU confidence is low
+  - rule: handle user wants to ask
     steps:
-      - intent: nlu_fallback
+      - intent: inform
       - action: utter_ask_clarify
 
-  # ========== TANYA BIAYA (DARI DATABASE) ==========
-  # Removed conflicting slot-based rules - handled by stories instead
-
-  # ========== TANYA PRODI ==========
-  # Complex prodi queries handled by stories
-
-  # ========== SIMPLE RULES FOR DIRECT QNA MAPPING ==========
-  - rule: jawab masa studi
+  - rule: handle fallback
     steps:
-      - intent: tanya_masa_studi
-      - action: action_answer_from_qna
+      - intent: nlu_fallback
+      - action: action_default_fallback
 
-  - rule: jawab cuti
+  # ========== MAIN FEATURE RULES ==========
+  - rule: answer prodi questions
     steps:
-      - intent: tanya_cuti
-      - action: action_answer_from_qna
+      - intent: tanya_prodi_tersedia
+      - action: action_query_prodi
 
-  - rule: jawab kegiatan mahasiswa
+  - rule: answer biaya questions
     steps:
-      - intent: tanya_kegiatan_mahasiswa
-      - action: action_answer_from_qna
+      - intent: tanya_biaya_kuliah
+      - action: action_query_biaya
 
-  - rule: jawab asrama
+  # ========== QNA RULES - STATIC RESPONSES (ALL INTENTS) ==========
+  - rule: answer all qna questions with static responses
     steps:
-      - intent: tanya_asrama
-      - action: action_answer_from_qna
-
-  - rule: jawab biaya pendaftaran
-    steps:
-      - intent: tanya_biaya_pendaftaran
-      - action: action_answer_from_qna
-
-  - rule: jawab cara pembayaran
-    steps:
-      - intent: cara_pembayaran
-      - action: action_answer_from_qna
-
-  - rule: jawab double degree
-    steps:
-      - intent: tanya_double_degree
-      - action: action_answer_from_qna
-
-  - rule: jawab ipk minimum
-    steps:
-      - intent: tanya_ipk_minimum
-      - action: action_answer_from_qna
-
-  - rule: jawab periode pendaftaran
-    steps:
-      - intent: tanya_periode_pendaftaran
-      - action: action_answer_from_qna
-
-  - rule: jawab seleksi
-    steps:
-      - intent: tanya_seleksi
-      - action: action_answer_from_qna
-
-  - rule: jawab transfer
-    steps:
-      - intent: tanya_transfer
-      - action: action_answer_from_qna
-
-  # ========== ROUTE AFTER CLARIFY ==========
-  - rule: route after clarify
-    steps:
-      - action: action_route_after_clarify
+      - or:
+        - intent: tanya_jalur_pendaftaran
+        - intent: tanya_periode_pendaftaran
+        - intent: tanya_syarat_pendaftaran
+        - intent: cara_mendaftar
+        - intent: tanya_biaya_pendaftaran
+        - intent: tanya_beasiswa
+        - intent: tanya_prosedur_seleksi
+        - intent: dokumen_diunggah
+        - intent: batas_usia
+        - intent: cara_pembayaran_pendaftaran
+        - intent: daftar_multi_prodi
+        - intent: ipk_minimum
+        - intent: ijazah_belum_terbit
+        - intent: tahapan_seleksi
+        - intent: toefl
+        - intent: format_surat_rekomendasi
+        - intent: pendaftar_asing
+        - intent: konsistensi_proposal
+        - intent: lokasi_hasil_seleksi
+        - intent: orientasi_wajib
+        - intent: kendala_pembayaran
+        - intent: batas_upload
+        - intent: ubah_data_setelah_submit
+        - intent: kuliah_online_blended
+        - intent: transfer_mahasiswa
+        - intent: double_degree
+        - intent: masa_studi
+        - intent: cuti_studi
+        - intent: asrama_pascasarjana
+        - intent: perpustakaan_pascasarjana
+        - intent: kontak_informasi
+        - intent: keringanan_ukt
+        - intent: konsultasi_akademik
+        - intent: wisuda_pascasarjana
+        - intent: jadwal_pendaftaran_2025
+        - intent: jadwal_ujian_2025
+        - intent: jadwal_pengumuman_2025
+      - action: action_answer_qna_static

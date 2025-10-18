@@ -1,25 +1,20 @@
 recipe: default.v1
-
 language: "id"
 
-# =====================================
-# NLU Pipeline (External Service)
-# =====================================
+# -------------------------
+# NLU Pipeline - External Service
+# -------------------------
 pipeline:
   - name: NLUCommandAdapter
     url: "http://localhost:3000"
 
-# =====================================
-# CORE POLICIES
-# =====================================
+# -------------------------
+# Dialogue Policies - Simple (No TEDPolicy)
+# -------------------------
 policies:
   - name: MemoizationPolicy
-  - name: TEDPolicy
-    max_history: 10
-    epochs: 200
   - name: RulePolicy
     core_fallback_threshold: 0.3
     core_fallback_action_name: "action_default_fallback"
-    enable_fallback_prediction: true
 
-assistant_id: pascasarjana_its_chatbot
+assistant_id: pascasarjana-its-chatbot
